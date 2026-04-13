@@ -1,1 +1,124 @@
-# game_repo_agents
+# Game Repo LangGraph Agent
+
+A simple LangGraph-based agent that creates or edits very small child-friendly browser games and publishes them to a Git repository.
+
+The script takes a free-text game request, generates a complete game with:
+
+- `index.html`
+- `style.css`
+- `script.js`
+
+Then it saves the game inside a local Git repo under a `games/` folder, commits the change, and pushes it to GitHub. :contentReference[oaicite:1]{index=1}
+
+---
+
+## What It Does
+
+This project supports two modes:
+
+### 1. Create a new game
+- Takes a free-text description
+- Uses OpenAI to generate a new game
+- Saves it in a new versioned folder such as:
+  - `games/doll-house-pool-game-1`
+  - `games/doll-house-pool-game-2`
+
+### 2. Edit an existing game
+- Finds the latest matching game folder
+- Loads the existing `index.html`, `style.css`, and `script.js`
+- Sends them to the model with the new request
+- Saves the updated files back into that existing folder
+
+The workflow is orchestrated with LangGraph nodes. :contentReference[oaicite:2]{index=2}
+
+---
+
+## Main Features
+
+- LangGraph workflow with clear node-based execution
+- Free-text game generation
+- Existing game editing
+- Automatic versioning for new games
+- Git add / commit / push
+- Console progress messages for each step
+- `.env` support for API key and model name
+
+---
+
+## Project Flow
+
+### Create mode
+1. Validate repo path
+2. Ensure `games/` exists
+3. Send the game request to the model
+4. Generate `index.html`, `style.css`, `script.js`
+5. Create the next versioned folder
+6. Save files
+7. Run:
+   - `git add`
+   - `git commit`
+   - `git push`
+
+### Edit mode
+1. Validate repo path
+2. Ensure `games/` exists
+3. Resolve the latest matching game folder
+4. Load existing files
+5. Send current files + edit request to the model
+6. Save updated files
+7. Run:
+   - `git add`
+   - `git commit`
+   - `git push`
+
+---
+
+## Agent Diagram
+
+```text
+User Request
+    |
+    v
++----------------------+
+|   prepare_paths      |
+|----------------------|
+| Validate repo        |
+| Ensure games/ exists |
+| Resolve mode         |
+| Resolve target game  |
++----------------------+
+    |
+    v
++----------------------+
+|   generate_files     |
+|----------------------|
+| Create mode:         |
+|   generate new game  |
+| Edit mode:           |
+|   load existing game |
+|   update with model  |
++----------------------+
+    |
+    v
++----------------------+
+|     save_files       |
+|----------------------|
+| Create mode:         |
+|   create next folder |
+|   base-name-1        |
+|   base-name-2        |
+| Edit mode:           |
+|   overwrite current  |
++----------------------+
+    |
+    v
++----------------------+
+|   publish_to_git     |
+|----------------------|
+| git add              |
+| git commit           |
+| git push             |
++----------------------+
+    |
+    v
+   Result
