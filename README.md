@@ -45,31 +45,28 @@ The workflow is orchestrated with LangGraph nodes. :contentReference[oaicite:2]{
 
 ---
 
-## Project Flow
+## Example Commands
 
-### Create mode
-1. Validate repo path
-2. Ensure `games/` exists
-3. Send the game request to the model
-4. Generate `index.html`, `style.css`, `script.js`
-5. Create the next versioned folder
-6. Save files
-7. Run:
-   - `git add`
-   - `git commit`
-   - `git push`
 
-### Edit mode
-1. Validate repo path
-2. Ensure `games/` exists
-3. Resolve the latest matching game folder
-4. Load existing files
-5. Send current files + edit request to the model
-6. Save updated files
-7. Run:
-   - `git add`
-   - `git commit`
-   - `git push`
+### Create new game
+```
+python game_repo_langgraph.py ^
+  --repo_path "C:\Users\liat\Documents\work\GALI" ^
+  --mode create ^
+  --description "Create a simple purple game where a fairy collects stars and bubbles."
+  ```
+
+
+
+### Edit an existing game
+
+```
+python game_repo_langgraph.py ^
+  --repo_path "C:\Users\liat\Documents\work\GALI" ^
+  --mode edit ^
+  --game_name "fairy-star-bubble-collector-1" ^
+  --description "update fairy image to https://image.similarpng.com/file/similarpng/very-thumbnail/2021/05/Cute-little-fairy-with-beautiful-long-braided-hairstyle-holding-a-lantern-on-transparent-background-PNG.png"
+```
 
 ---
 
