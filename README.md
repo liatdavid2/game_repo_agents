@@ -13,7 +13,7 @@ Then it saves the game inside a local Git repo under a `games/` folder, commits 
 ---
 ## Demo Video
 
-[![Watch the demo](https://img.youtube.com/vi/nokyotwY3wY/0.jpg)](https://youtu.be/nokyotwY3wY)
+[![Watch the demo](https://img.youtube.com/vi/pFAwtT-79fc/0.jpg)](https://youtu.be/pFAwtT-79fc)
 
 ---
 
