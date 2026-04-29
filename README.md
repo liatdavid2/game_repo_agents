@@ -1,4 +1,4 @@
-# Voice-to-Game Agents
+# Voice-to-Game AI Agents
 
 A multilingual AI agent platform that turns voice or text prompts into playable browser games for children.
 
@@ -10,7 +10,7 @@ The system is built as an agentic workflow, where each agent is responsible for 
 
 This demo shows how a user can describe a game idea, generate a playable browser game, save it as a new version, and open it from the game library.
 
-[![Watch the demo](images/video.png)](PUT_YOUTUBE_LINK_HERE)
+[![Watch the demo](images/Voice_to_Game.png)](https://youtu.be/ffYAiedReDo)
 
 ## Overview
 
@@ -271,3 +271,11 @@ Optionally commits and pushes the generated game to Git for GitHub Pages deploym
 ### 9. Game Library Agent
 
 Scans the `games/` folder and displays generated games in a visual library with Play and Edit options.
+
+## Docker Support
+
+The platform can run inside Docker, making the environment reproducible and easy to deploy.
+
+Docker is used to package the Python agent workflow, dependencies, environment configuration, and game generation runtime into a single container.
+
+This makes it easier to run the project consistently across local machines, demos, and cloud environments.
